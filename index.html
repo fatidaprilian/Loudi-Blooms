@@ -297,5 +297,94 @@
     </div>
 </section>
 
+
+
+<script>
+// Fungsi untuk menambahkan produk ke keranjang
+function addToCart(productName, price) {
+    let cart = JSON.parse(localStorage.getItem('cart')) || [];
+
+    // Buat ID produk yang unik (misalnya menggunakan nama produk)
+    const itemId = productName.replace(/\s+/g, '-').toLowerCase();
+
+    // Cek apakah produk sudah ada di keranjang
+    let productExist = cart.find(item => item.id === itemId);
+
+    if (productExist) {
+        // Jika produk sudah ada, hanya tambahkan jumlahnya
+        alert(productName + ' sudah ada di keranjang!');
+    } else {
+        // Jika produk belum ada, tambahkan produk baru
+        cart.push({ id: itemId, name: productName, price: price });
+        alert(productName + ' telah ditambahkan ke keranjang!');
+    }
+
+    // Simpan cart yang diperbarui ke localStorage
+    localStorage.setItem('cart', JSON.stringify(cart));
+
+    // Memperbarui tampilan keranjang
+    updateCart();
+}
+
+// Fungsi untuk memperbarui tampilan keranjang
+function updateCart() {
+    let cart = JSON.parse(localStorage.getItem('cart')) || [];
+    const cartItems = document.getElementById('cart-items');
+    const cartTotal = document.getElementById('cart-total');
+
+    // Kosongkan isi keranjang sebelum memperbarui
+    cartItems.innerHTML = '';
+
+    if (cart.length === 0) {
+        cartItems.innerHTML = '<p>Keranjang Anda kosong.</p>';
+        cartTotal.textContent = '0';
+        return;
+    }
+
+    let total = 0;
+    cart.forEach((item, index) => {
+        const itemElement = document.createElement('div');
+        itemElement.innerHTML = `
+            <p>${item.name} - Rp${item.price}</p>
+            <button class="remove-button" onclick="removeFromCart(${index})">Hapus</button>
+        `;
+        cartItems.appendChild(itemElement);
+        total += item.price;
+    });
+
+    cartTotal.textContent = total;
+}
+
+// Fungsi untuk menghapus produk dari keranjang
+function removeFromCart(index) {
+    let cart = JSON.parse(localStorage.getItem('cart')) || [];
+    cart.splice(index, 1); // Hapus item dari keranjang berdasarkan indeks
+    localStorage.setItem('cart', JSON.stringify(cart));
+    updateCart(); // Perbarui tampilan keranjang
+}
+
+function checkoutViaWhatsapp() {
+    const cart = JSON.parse(localStorage.getItem('cart')) || [];
+    if (cart.length === 0) {
+        alert('Keranjang Anda kosong!');
+        return;
+    }
+
+    let message = 'Hai kak saya mau order di Loudi Blooms\n\n';
+    message += 'Nama: [Isi Nama Anda]\n';
+    message += 'Keranjang Belanja:\n';
+
+    cart.forEach((item, index) => {
+        message += `${index + 1}. ${item.name} - Rp${item.price.toLocaleString()}\n`;
+    });
+
+    message += `\nTotal: Rp${cart.reduce((total, item) => total + item.price, 0).toLocaleString()}\n`;
+    message += 'Apakah bunga ini tersedia?';
+
+    const whatsappLink = `https://wa.me/6285283355848?text=${encodeURIComponent(message)}`;
+    window.open(whatsappLink, '_blank');
+}
+</script>
+
 </body>
 </html>
