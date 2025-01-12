@@ -71,11 +71,13 @@ section {
 }
 
 .product-item {
-    border: 1px solid #ddd;
-    padding: 10px;
-    margin: 10px;
-    width: 200px;
+    background-color: #fff;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    width: calc(20% - 20px); /* Mengatur lebar produk agar ada 5 produk dalam satu baris, dengan margin */
     text-align: center;
+    margin: 10px 0; /* Margin vertikal untuk spasi antara baris */
 }
 
 .product-item img {
@@ -377,13 +379,13 @@ html {
     scroll-margin-top: 150px; /* Menambahkan jarak 80px saat scroll ke #cart */
 }
 /* Responsive styles for mobile devices */
+/* Tablet and smaller devices */
 @media screen and (max-width: 768px) {
-    /* Header adjustments */
+    /* Keep all your existing adjustments */
     header .logo h1 {
         font-size: 1.5em;
     }
 
-    /* Navigation adjustments */
     nav ul li {
         margin: 0 8px;
     }
@@ -393,7 +395,6 @@ html {
         font-size: 14px;
     }
 
-    /* Home section adjustments */
     #home h2 {
         font-size: 1.8em;
         padding: 0 10px;
@@ -404,10 +405,16 @@ html {
         padding: 0 10px;
     }
 
-    /* Products section adjustments */
+    /* Updated product grid styling */
+    .product-gallery {
+        justify-content: center; /* Pusatkan produk */
+        gap: 15px; /* Jarak antar produk */
+    }
+    
     .product-item {
-        width: calc(50% - 20px); /* 2 items per row on mobile */
-        margin: 10px;
+        width: calc(50% - 15px); /* 2 produk per baris */
+        min-width: 140px; /* Lebar minimum produk */
+        margin: 0; /* Hapus margin karena sudah pakai gap */
     }
 
     .product-item img {
@@ -429,7 +436,7 @@ html {
         font-size: 14px;
     }
 
-    /* Cart section adjustments */
+    /* Keep all other existing adjustments */
     #cart {
         padding: 15px;
         margin: 20px 10px;
@@ -460,7 +467,6 @@ html {
         padding: 10px 20px;
     }
 
-    /* Contact section adjustments */
     #contact {
         padding: 20px 15px;
     }
@@ -480,7 +486,6 @@ html {
         height: 250px;
     }
 
-    /* About Us section adjustments */
     #about-us {
         padding: 30px 15px;
     }
@@ -502,8 +507,13 @@ html {
 
 /* Small mobile devices */
 @media screen and (max-width: 480px) {
+    .product-gallery {
+        padding: 10px;
+    }
+
     .product-item {
-        width: calc(100% - 20px); /* 1 item per row on smaller devices */
+        width: 90%; /* 1 produk per baris */
+        max-width: 280px; /* Batasi lebar maksimum */
     }
 
     nav ul li {
