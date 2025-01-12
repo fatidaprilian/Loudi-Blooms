@@ -1,0 +1,454 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Luca Florist</title>
+    <link rel="stylesheet" href="style.css">
+    
+    <style>
+    header {
+    position: fixed; /* Posisi tetap untuk header */
+    top: 0;
+    left: 0;
+    right: 0;
+    background-color: white; /* Warna latar belakang header */
+    z-index: 1000; /* Memastikan header tetap di atas konten lain */
+    padding: 10px 0; /* Padding untuk estetika */
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1); /* Bayangan halus untuk kedalaman */
+}
+
+    section {
+    margin: 20px 0;
+    padding: 20px;
+    border-radius: 10px;
+    background: #fafad2;
+    padding-top: 80px; /* Ruang untuk header tetap */
+}
+
+    .product-list {
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: space-between; /* Untuk meratakan produk dalam baris */
+    }
+    .product-item {
+        background-color: #fff;
+        padding: 20px;
+        border-radius: 10px;
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        width: calc(20% - 20px); /* Mengatur lebar produk agar ada 5 produk dalam satu baris, dengan margin */
+        text-align: center;
+        margin: 10px 0; /* Margin vertikal untuk spasi antara baris */
+    }
+    .product-image {
+        width: 150px; /* Ukuran gambar produk lebih kecil */
+        height: auto;
+        border-radius: 10px;
+    }
+    .buy-button {
+        display: inline-block;
+        padding: 10px 20px;
+        background-color: pink; /* Warna latar belakang pink */
+        color: white;
+        text-decoration: none;
+        border-radius: 5px;
+        border: none;
+        font-size: 16px;
+        cursor: pointer;
+        transition: background-color 0.3s ease;
+    }
+    .buy-button:hover {
+        background-color: #ff69b4; /* Warna pink lebih gelap saat hover */
+    }
+    /* Section Home */
+#home {
+    background-image: url('banner.jpeg'); /* Ganti dengan gambar latar belakang yang menarik */
+    background-size: cover;
+    background-position: center;
+    color: white;
+    padding: 120px 20px;
+    text-align: center;
+    height: 500px; /* Sesuaikan tinggi section agar teks lebih proporsional */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    background-attachment: fixed;
+    position: relative;
+}
+
+/* Overlay di atas gambar latar belakang */
+#home::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: rgba(0, 0, 0, 0.4); /* Overlay transparan untuk meningkatkan kontras teks */
+    z-index: 1;
+}
+
+#home h2 {
+    font-size: 3.5em; /* Lebih besar untuk perhatian */
+    font-weight: bold;
+    text-shadow: 2px 2px 8px rgba(0, 0, 0, 0.8);
+    z-index: 2; /* Pastikan teks berada di atas overlay */
+    margin-bottom: 20px;
+    line-height: 1.2;
+}
+
+#home p {
+    font-size: 1.6em;
+    margin-top: 20px;
+    text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.7);
+    z-index: 2;
+    line-height: 1.6;
+    max-width: 800px;
+    margin: 20px auto;
+}
+
+#home a {
+    text-decoration: none;
+    padding: 15px 30px;
+    background-color: #ff69b4;
+    color: white;
+    font-size: 1.2em;
+    border-radius: 50px;
+    transition: background-color 0.3s ease;
+    z-index: 2;
+    margin-top: 30px;
+}
+
+#home a:hover {
+    background-color: #ff1493; /* Darker pink on hover */
+}
+
+/* Section About Us */
+#about-us {
+    background-color: #f9f9f9;
+    padding: 60px 20px;
+    text-align: center;
+    border-radius: 10px;
+    margin-top: 20px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1); /* Memberikan efek bayangan */
+}
+
+#about-us h2 {
+    font-size: 2.8em;
+    font-weight: bold;
+    color: #333;
+    margin-bottom: 20px;
+    text-transform: uppercase; /* Membuat judul lebih elegan */
+    letter-spacing: 2px; /* Memberikan ruang antar huruf untuk kesan lebih modern */
+}
+
+#about-us p {
+    font-size: 1.2em;
+    color: #555;
+    max-width: 800px;
+    margin: 20px auto;
+    line-height: 1.8; /* Menambah jarak antar baris teks untuk kenyamanan membaca */
+}
+
+#about-us img {
+    max-width: 100%;
+    border-radius: 10px;
+    margin-top: 20px;
+}
+
+/* Mobile Responsiveness */
+/* Navbar responsif */
+@media (max-width: 768px) {
+    header nav ul {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        padding: 10px 0;
+    }
+
+    header nav ul li {
+        margin: 10px 0;
+    }
+
+    header nav ul li a {
+        padding: 10px 20px;
+        font-size: 1.2em; /* Membesarkan teks pada menu */
+    }
+
+    /* Mengubah ukuran tombol keranjang di mobile */
+    #cart button {
+        font-size: 1.2em;
+        padding: 10px 20px;
+    }
+
+    /* Mengubah tampilan produk di mobile */
+    .product-gallery {
+        display: block;
+        margin: 0 auto;
+    }
+
+    .product-item {
+        width: 100%; /* Setiap item produk mengambil lebar penuh */
+        margin-bottom: 20px;
+    }
+
+    #home h2 {
+        font-size: 2.5em;
+    }
+
+    #home p {
+        font-size: 1.2em;
+    }
+
+    #about-us h2 {
+        font-size: 2em;
+    }
+
+    #about-us p {
+        font-size: 1em;
+        margin: 10px;
+    }
+
+    #home a {
+        font-size: 1em;
+    }
+}
+
+/* Gambar untuk About Us - responsif */
+#about-us img {
+    max-width: 100%;
+    height: auto;
+    border-radius: 10px;
+    margin-top: 20px;
+}
+
+
+
+    </style>
+</head>
+<body>
+    <header>
+        <div class="logo">
+            <h1>Loudi Blooms</h1>
+        </div>
+        <nav>
+            <ul>
+                <li><a href="#home" class="nav-button">Home</a></li>
+                <li><a href="#products" class="nav-button">Our Products</a></li>
+                <li><a href="#cart" class="nav-button">Keranjang</a></li>
+                <li><a href="#contact" class="nav-button">Contact Us</a></li>
+                <li><a href="#about-us" class="nav-button">About Us</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <section id="home">
+        <h2>Welcome to Loudi Blooms</h2>
+        <p>Find the most beautiful fresh flowers for every occasion!</p>
+    </section>
+
+    <section id="products">
+        <h2>Our Products</h2>
+        <div class="product-gallery">
+            <div class="product-item">
+                <img src="mawar.jpg" alt="Flower 1">
+                <h3>Mawar</h3>
+                <p>Rp30.000</p>
+                <button class="buy-button" onclick="addToCart('Mawar', 30000)">Tambah ke Keranjang</button>
+            </div>
+            <div class="product-item">
+                <img src="matahari.jpg" alt="Flower 2">
+                <h3>Matahari</h3>
+                <p>Rp35.000</p>
+                <button class="buy-button" onclick="addToCart('Matahari', 35000)">Tambah ke Keranjang</button>
+            </div>
+            <div class="product-item">
+                <img src="tulip.png" alt="Flower 3">
+                <h3>Tulip</h3>
+                <p>Rp40.000</p>
+                <button class="buy-button" onclick="addToCart('Tulip', 40000)">Tambah ke Keranjang</button>
+            </div>
+            <div class="product-item">
+                <img src="daisy.png" alt="Flower 4">
+                <h3>Daisy</h3>
+                <p>Rp20.000</p>
+                <button class="buy-button" onclick="addToCart('Daisy', 20000)">Tambah ke Keranjang</button>
+            </div>
+            <div class="product-item">
+                <img src="gerbera.png" alt="Flower 5">
+                <h3>Gerbera</h3>
+                <p>Rp30.000</p>
+                <button class="buy-button" onclick="addToCart('Gerbera', 35000)">Tambah ke Keranjang</button>
+            </div>
+             <div class="product-gallery">
+            <div class="product-item">
+                <img src="Lily.jpg" alt="Flower 6">
+                <h3>Lily</h3>
+                <p>Rp30.000,00</p>
+                <button class="buy-button" onclick="addToCart('Lily', 30000)">Tambah ke Keranjang</button>
+            </div>
+            <div class="product-item">
+                <img src="krisan.jpg" alt="Flower 7">
+                <h3>Krisan</h3>
+                <p>Rp30.000</p>
+                <button class="buy-button" onclick="addToCart('Krisan', 30000)">Tambah ke Keranjang</button>
+            </div>
+            <div class="product-item">
+                <img src="peony.jpg" alt="Flower 8">
+                <h3>Peony</h3>
+                <p>Rp40.000</p>
+                <button class="buy-button" onclick="addToCart('Peony', 40000)">Tambah ke Keranjang</button>
+            </div>
+            <div class="product-item">
+                <img src="hortensia.jpg" alt="Flower 9">
+                <h3>Hortensia</h3>
+                <p>Rp45.000</p>
+                <button class="buy-button" onclick="addToCart('Hortensia', 45000)">Tambah ke Keranjang</button>
+            </div>
+            <div class="product-item">
+                <img src="anyelir.jpg" alt="Flower 10">
+                <h3>Anyelir</h3>
+                <p>Rp30.000</p>
+                <button class="buy-button" onclick="addToCart('Anyelir', 30000)">Tambah ke Keranjang</button>
+            </div>
+        </div>
+    </section>
+
+    <section id="cart">
+    <h2>Keranjang Belanja</h2>
+    <div id="cart-items">
+        <p>Keranjang Anda kosong.</p>
+    </div>
+    <h3>Total: Rp<span id="cart-total">0</span></h3>
+
+    <button id="checkout-button" onclick="checkoutViaWhatsapp()">Checkout via WhatsApp</button>
+
+</section>
+
+   <section id="contact">
+    <h2>Contact Us</h2>
+    
+    <div class="contact-options">
+        <h3>Contact via WhatsApp</h3>
+        <p>Klik tombol ini untuk menghubungkan ke WhatsApp!</p>
+        <a href="https://wa.me/6285283355848" target="_blank" class="whatsapp-button">WhatsApp Us</a>
+        <h3>Email Kami</h3>
+        <p>Anda juga bisa menghubungi kami melalui email: <a href="mailto:loudiblooms@example.com">loudiblooms@example.com</a></p>
+    </div>
+
+    <!-- Bagian Lokasi -->
+    <div class="location">
+        <h3>Our Location</h3>
+        <p>Kamu bisa melihat lokasi toko kami di:</p>
+        <p>Universitas Bina Sarana Informatika, Depok</p>
+
+        <iframe src="https://maps.google.com/maps?width=520&amp;height=400&amp;hl=en&amp;q=Jl.%20Margonda%20No.8,%20Pondok%20Cina,%20Kecamatan%20Beji,%20Kota%20Depok,%20Jawa%20Barat%2016424%20Depok+(Univeritas%20Bina%20Sarana%20Informatika)&amp;t=&amp;z=16&amp;ie=UTF8&amp;iwloc=B&amp;output=embed" width="400" height="300" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+    </div>
+
+</section>
+
+<section id="about-us">
+    <h2>Tentang Kami</h2>
+    <p>Selamat datang di Loudi Blooms, tujuan utama Anda untuk bunga segar dan indah yang membawa kebahagiaan. Kami menyediakan berbagai jenis bunga untuk setiap momen spesial dalam hidup Anda, memastikan rangkaian bunga kami menjadi hadiah atau dekorasi yang sempurna.</p>
+    <p>Di Loudi Blooms, kami percaya bahwa bunga adalah bahasa universal yang mampu menyampaikan perasaan lebih dalam daripada kata-kata. Setiap tangkai bunga yang kami pilih dipilih dengan hati-hati untuk memberikan kesegaran dan keindahan terbaik untuk Anda dan orang-orang terdekat Anda.</p>
+    <p>Apakah itu untuk merayakan ulang tahun, pernikahan, atau sekadar memberi kejutan pada orang yang Anda cintai, Loudi Blooms selalu siap menemani Anda dalam setiap momen istimewa.</p>
+    <img src="banner-about.jpg" alt="Loudi Blooms Flower Shop"> <!-- Gantilah dengan URL gambar yang sesuai -->
+    <div class="location">
+        <h3>Lokasi Kami</h3>
+        <iframe src="https://maps.google.com/maps?width=520&amp;height=400&amp;hl=en&amp;q=Jl.%20Margonda%20No.8,%20Pondok%20Cina,%20Kecamatan%20Beji,%20Kota%20Depok,%20Jawa%20Barat%2016424%20Depok+(Univeritas%20Bina%20Sarana%20Informatika)&amp;t=&amp;z=16&amp;ie=UTF8&amp;iwloc=B&amp;output=embed" width="400" height="300" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+    </div>
+</section>
+
+
+
+<script>
+// Fungsi untuk menambahkan produk ke keranjang
+function addToCart(productName, price) {
+    let cart = JSON.parse(localStorage.getItem('cart')) || [];
+
+    // Buat ID produk yang unik (misalnya menggunakan nama produk)
+    const itemId = productName.replace(/\s+/g, '-').toLowerCase();
+
+    // Cek apakah produk sudah ada di keranjang
+    let productExist = cart.find(item => item.id === itemId);
+
+    if (productExist) {
+        // Jika produk sudah ada, hanya tambahkan jumlahnya
+        alert(productName + ' sudah ada di keranjang!');
+    } else {
+        // Jika produk belum ada, tambahkan produk baru
+        cart.push({ id: itemId, name: productName, price: price });
+        alert(productName + ' telah ditambahkan ke keranjang!');
+    }
+
+    // Simpan cart yang diperbarui ke localStorage
+    localStorage.setItem('cart', JSON.stringify(cart));
+
+    // Memperbarui tampilan keranjang
+    updateCart();
+}
+
+// Fungsi untuk memperbarui tampilan keranjang
+function updateCart() {
+    let cart = JSON.parse(localStorage.getItem('cart')) || [];
+    const cartItems = document.getElementById('cart-items');
+    const cartTotal = document.getElementById('cart-total');
+
+    // Kosongkan isi keranjang sebelum memperbarui
+    cartItems.innerHTML = '';
+
+    if (cart.length === 0) {
+        cartItems.innerHTML = '<p>Keranjang Anda kosong.</p>';
+        cartTotal.textContent = '0';
+        return;
+    }
+
+    let total = 0;
+    cart.forEach((item, index) => {
+        const itemElement = document.createElement('div');
+        itemElement.innerHTML = `
+            <p>${item.name} - Rp${item.price}</p>
+            <button class="remove-button" onclick="removeFromCart(${index})">Hapus</button>
+        `;
+        cartItems.appendChild(itemElement);
+        total += item.price;
+    });
+
+    cartTotal.textContent = total;
+}
+
+// Fungsi untuk menghapus produk dari keranjang
+function removeFromCart(index) {
+    let cart = JSON.parse(localStorage.getItem('cart')) || [];
+    cart.splice(index, 1); // Hapus item dari keranjang berdasarkan indeks
+    localStorage.setItem('cart', JSON.stringify(cart));
+    updateCart(); // Perbarui tampilan keranjang
+}
+
+function checkoutViaWhatsapp() {
+    const cart = JSON.parse(localStorage.getItem('cart')) || [];
+    if (cart.length === 0) {
+        alert('Keranjang Anda kosong!');
+        return;
+    }
+
+    let message = 'Hai kak saya mau order di Loudi Blooms\n\n';
+    message += 'Nama: [Isi Nama Anda]\n';
+    message += 'Keranjang Belanja:\n';
+
+    cart.forEach((item, index) => {
+        message += `${index + 1}. ${item.name} - Rp${item.price.toLocaleString()}\n`;
+    });
+
+    message += `\nTotal: Rp${cart.reduce((total, item) => total + item.price, 0).toLocaleString()}\n`;
+    message += 'Apakah bunga ini tersedia?';
+
+    const whatsappLink = `https://wa.me/6285283355848?text=${encodeURIComponent(message)}`;
+    window.open(whatsappLink, '_blank');
+}
+</script>
+
+</body>
+</html>
