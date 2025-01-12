@@ -378,6 +378,7 @@ html {
 #cart {
     scroll-margin-top: 150px; /* Menambahkan jarak 80px saat scroll ke #cart */
 }
+
 /* Responsive styles for mobile devices */
 /* Tablet and smaller devices */
 @media screen and (max-width: 768px) {
@@ -395,14 +396,22 @@ html {
         font-size: 14px;
     }
 
+    #home {
+        height: auto; /* Tinggi menyesuaikan konten */
+        min-height: 400px; /* Minimal tinggi */
+        padding: 60px 15px; /* Padding lebih kecil */
+    }
+
     #home h2 {
-        font-size: 1.8em;
-        padding: 0 10px;
+        font-size: 2.2em !important; /* Memaksa ukuran font */
+        padding: 0 10px !important;
+        width: 100% !important;
+        max-width: 100% !important;
     }
 
     #home p {
-        font-size: 1.2em;
-        padding: 0 10px;
+        font-size: 1.2em !important;
+        padding: 0 10px !important;
     }
 
     /* Updated product grid styling */
@@ -525,8 +534,19 @@ html {
         font-size: 13px;
     }
 
+    #home {
+        min-height: 300px;
+        padding: 40px 10px;
+    }
+
     #home h2 {
-        font-size: 1.5em;
+        font-size: 1.8em !important;
+        line-height: 1.3 !important;
+        margin: 10px 0 !important;
+    }
+
+    #home p {
+        font-size: 1em !important;
     }
 
     #checkout-button {
